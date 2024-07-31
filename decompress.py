@@ -2,8 +2,8 @@ import bz2
 import pickle
 
 def decompress_model():
-  compressed_model_path = "model1.pkl.bz2"
-  decompressed_model_path = "model1.pkl"  # Path for the decompressed model
+  compressed_model_path = "model.pkl.bz2"
+  decompressed_model_path = "model.pkl"  # Path for the decompressed model
 
   with bz2.open(compressed_model_path, 'rb') as compressed_file:
     decompressed_data = compressed_file.read()
