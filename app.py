@@ -2,11 +2,15 @@ from flask import Flask, request, render_template, jsonify
 import pickle
 import pandas as pd
 import numpy as np
+
 from decompress import decompress_model
+
+#ld=pd.read_csv('/content/credit - credit (4).csv')
+
+app = Flask(__name__)
 
 model = decompress_model()
 
-app = Flask(__name__)
 
 @app.route('/home',methods=['GET'])
 def home():
@@ -14,8 +18,6 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    print('tesniya')
-    print (request.form)
     data = request.json
 
     # Extract each value from the JSON
@@ -46,9 +48,7 @@ def predict():
        # 'Age Group': [float(age_group)]
         
     })
-    print('here')
-    prediction = model1.predict(cs)
-    print(prediction)
+    prediction = model.predict(cs)
     #prediction_='Good' if prediction[0]== 1 else 'Standard' if prediction[1]==1 else 'Poor'
     if prediction[0]==0: 
         credit_performance='Good'
@@ -57,7 +57,7 @@ def predict():
     else:
         credit_performance='Poor'   
     #return render_template('result.html',pred=prediction)
-    return jsonify({'prediction': credit_performance})   
+    return jsonify({'prediction': credit_performance})    
 
 if __name__ == '__main__':
     app.run(debug=True)
