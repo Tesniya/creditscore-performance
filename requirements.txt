@@ -3,3 +3,4 @@ numpy==1.22.2
 pandas==1.4.1
 scikit-learn==1.3.2
 gunicorn
+bz2file==0.98
