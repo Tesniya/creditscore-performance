@@ -14,7 +14,8 @@ model = decompress_model()
 
 @app.route('/home',methods=['GET'])
 def home():
-    return render_template('index.html')
+    prediction_endpoint = request.url_root + '/predict'
+    return render_template('index.html', prediction_endpoint=prediction_endpoint)
 
 @app.route('/predict',methods=['POST'])
 def predict():
